@@ -1,0 +1,33 @@
+---
+title: "Basic Inferential Data Analysis"
+author: "Will Swales"
+date: "10 July 2018"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Overview
+The purpose of this report is to document an exploratory analysis of the ToothGrowth dataset.
+
+## Raw Data
+The raw data is the ToothGrowth dataset provided in the R datasets package. This is a data frame which contains data of an experiment to explore the effectof Vitamin C on Tooth Growth in guinea pigs.
+
+The dataset comes with the following description:
+
+>*The response is the length of odontoblasts (cells responsible for tooth growth) in 60 guinea pigs. Each animal received one of three dose levels of vitamin C (0.5, 1, and 2 mg/day) by one of two delivery methods, orange juice or ascorbic acid (a form of vitamin C and coded as VC).*
+
+## Data Summary
+### Data Structure
+```{r, echo=FALSE}
+data("ToothGrowth")
+str(ToothGrowth)
+```
+
+### Data Visualisation
+```{r, echo=FALSE, warning=FALSE}
+library(ggplot2)
+qplot(dose,len,data=ToothGrowth,color=supp, geom=c("point","smooth"), method="lm", facets=.~supp)
+```
